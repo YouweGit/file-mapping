@@ -1,10 +1,13 @@
 <?php
+
 /**
- * Copyright Mediact. All rights reserved.
- * https://www.Mediact.nl
+ * Copyright © Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Mediact\FileMapping;
+declare(strict_types=1);
+
+namespace Youwe\FileMapping;
 
 use Iterator;
 

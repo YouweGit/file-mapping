@@ -1,47 +1,55 @@
 {
-  "name": "mediact/file-mapping",
-  "description": "File mapping library",
-  "license": "MIT",
-  "type": "library",
-  "prefer-stable": true,
-  "minimum-stability": "stable",
-  "authors": [
-    {
-      "name": "MediaCT B.V.",
-      "email": "contact@mediact.nl"
+    "name": "youwe/file-mapping",
+    "description": "File mapping library",
+    "license": "MIT",
+    "type": "library",
+    "prefer-stable": true,
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Youwe B.V.",
+            "email": "contact@youweagency.com"
+        },
+        {
+            "name": "Jan-Marten de Boer",
+            "role": "developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2"
     },
-    {
-      "name": "Jan-Marten de Boer",
-      "role": "developer"
+    "require-dev": {
+        "phpunit/phpunit": "@stable",
+        "kint-php/kint": "@stable",
+        "mediact/testing-suite": "@stable",
+        "mikey179/vfsstream": "@stable"
+    },
+    "autoload": {
+        "psr-4": {
+            "Youwe\\FileMapping\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Youwe\\FileMapping\\Tests\\": "tests"
+        }
+    },
+    "archive": {
+        "exclude": [
+            "/tests",
+            "/phpcs.xml",
+            "/phpmd.xml",
+            "/phpunit.xml",
+            "/bitbucket-pipelines.yml",
+            "/.gitignore",
+            "/docker-compose.yml",
+            "/.env.dev",
+            "/grumphp.yml",
+            "/pdepend.xml",
+            "/phpstan.neon"
+        ]
+    },
+    "config": {
+        "sort-packages": true
     }
-  ],
-  "require": {
-    "php": "^7.0"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "@stable",
-    "kint-php/kint": "@stable",
-    "mediact/testing-suite": "@stable",
-    "mikey179/vfsstream": "@stable"
-  },
-  "autoload": {
-    "psr-4": {
-      "Mediact\\FileMapping\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Mediact\\FileMapping\\Tests\\": "tests"
-    }
-  },
-  "archive": {
-    "exclude": [
-      "tests",
-      "phpcs.xml",
-      "phpmd.xml",
-      "phpunit.xml",
-      "bitbucket-pipelines.yml",
-      ".gitignore"
-    ]
-  }
 }

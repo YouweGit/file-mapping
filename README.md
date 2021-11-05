@@ -1,7 +1,6 @@
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mediact/file-mapping/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mediact/file-mapping/?branch=master)
-# file-mapping
+# File mapping
 
-A PHP package for mapping files from one location to another. It is used by the [mediact/composer-file-installer](https://github.com/mediact/composer-file-installer) package to move installed files according to the location mapping.
+A PHP package for mapping files from one location to another. It is used by the [youwe/composer-file-installer](https://github.com/YouweGit/composer-file-installer) package to move installed files according to the location mapping.
 
 ## Usage examples
 
