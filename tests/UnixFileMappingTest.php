@@ -1,17 +1,20 @@
 <?php
+
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright © Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Mediact\FileMapping\Tests;
+declare(strict_types=1);
+
+namespace Youwe\FileMapping\Tests;
 
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
-use Mediact\FileMapping\UnixFileMapping;
+use Youwe\FileMapping\UnixFileMapping;
 
 /**
- * @coversDefaultClass \Mediact\FileMapping\UnixFileMapping
+ * @coversDefaultClass \Youwe\FileMapping\UnixFileMapping
  */
 class UnixFileMappingTest extends TestCase
 {
