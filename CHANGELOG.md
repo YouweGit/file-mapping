@@ -7,8 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 1.1.0
 ### Changed
 - Vendor name of the module.
-- Copyrights.
 - Resolved new errors of latest testing suite.
 
 ### Added
-- Added declare strict type to all files.
+- Declare strict type to all files.
+- Copyrights.
