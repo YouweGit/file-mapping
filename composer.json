@@ -4,7 +4,7 @@
     "license": "MIT",
     "type": "library",
     "prefer-stable": true,
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Youwe B.V.",
@@ -21,7 +21,7 @@
     "require-dev": {
         "phpunit/phpunit": "@stable",
         "kint-php/kint": "@stable",
-        "mediact/testing-suite": "@stable",
+        "mediact/testing-suite": "dev-feature/OTPBBBBBZP-117",
         "mikey179/vfsstream": "@stable"
     },
     "autoload": {
@@ -35,6 +35,26 @@
         }
     },
     "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/YouweGit/coding-standard"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/YouweGit/coding-standard-phpstorm"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/YouweGit/composer-dependency-installer"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/YouweGit/composer-file-installer"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/YouweGit/file-mapping"
+        },
         {
             "type": "vcs",
             "url": "https://github.com/YouweGit/testing-suite"
