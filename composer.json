@@ -19,10 +19,9 @@
         "php": "^7.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "@stable",
         "kint-php/kint": "@stable",
         "mikey179/vfsstream": "@stable",
-        "youwe/testing-suite": "dev-master"
+        "phpunit/phpunit": "@stable"
     },
     "autoload": {
         "psr-4": {
