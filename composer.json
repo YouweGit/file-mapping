@@ -8,7 +8,7 @@
     "authors": [
         {
             "name": "Youwe B.V.",
-            "email": "contact@youweagency.com"
+            "email": "info@youweagency.com"
         },
         {
             "name": "Jan-Marten de Boer",
@@ -21,8 +21,8 @@
     "require-dev": {
         "phpunit/phpunit": "@stable",
         "kint-php/kint": "@stable",
-        "mediact/testing-suite": "dev-feature/OTPBBBBBZP-117",
-        "mikey179/vfsstream": "@stable"
+        "mikey179/vfsstream": "@stable",
+        "youwe/testing-suite": "dev-master"
     },
     "autoload": {
         "psr-4": {
