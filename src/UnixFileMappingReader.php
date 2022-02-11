@@ -1,10 +1,13 @@
 <?php
+
 /**
- * Copyright Mediact. All rights reserved.
- * https://www.Mediact.nl
+ * Copyright © Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Mediact\FileMapping;
+declare(strict_types=1);
+
+namespace Youwe\FileMapping;
 
 use ArrayIterator;
 use Iterator;
@@ -58,7 +61,7 @@ class UnixFileMappingReader implements FileMappingReaderInterface
 
             $this->mappings = new ArrayIterator(
                 array_map(
-                    function (string $mapping) : FileMappingInterface {
+                    function (string $mapping): FileMappingInterface {
                         return new UnixFileMapping(
                             $this->sourceDirectory,
                             $this->targetDirectory,

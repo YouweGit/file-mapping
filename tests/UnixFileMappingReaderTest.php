@@ -1,18 +1,21 @@
 <?php
+
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright © Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Mediact\FileMapping\Tests;
+declare(strict_types=1);
 
-use Mediact\FileMapping\FileMappingInterface;
+namespace Youwe\FileMapping\Tests;
+
+use Youwe\FileMapping\FileMappingInterface;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
-use Mediact\FileMapping\UnixFileMappingReader;
+use Youwe\FileMapping\UnixFileMappingReader;
 
 /**
- * @coversDefaultClass \Mediact\FileMapping\UnixFileMappingReader
+ * @coversDefaultClass \Youwe\FileMapping\UnixFileMappingReader
  */
 class UnixFileMappingReaderTest extends TestCase
 {
@@ -50,7 +53,7 @@ class UnixFileMappingReaderTest extends TestCase
 
         foreach ($mappings as $offset => $mapping) {
             $this->assertInstanceOf(FileMappingInterface::class, $mapping);
-            $this->assertInternalType('integer', $offset);
+            $this->assertIsInt($offset);
             $this->assertFileExists($mapping->getSource());
         }
     }
