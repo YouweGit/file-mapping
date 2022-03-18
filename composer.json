@@ -4,7 +4,7 @@
     "license": "MIT",
     "type": "library",
     "prefer-stable": true,
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Youwe B.V.",
@@ -33,45 +33,11 @@
             "Youwe\\FileMapping\\Tests\\": "tests"
         }
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/YouweGit/coding-standard"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/YouweGit/coding-standard-phpstorm"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/YouweGit/composer-dependency-installer"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/YouweGit/composer-file-installer"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/YouweGit/file-mapping"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/YouweGit/testing-suite"
-        }
-    ],
     "archive": {
         "exclude": [
             "/tests",
-            "/phpcs.xml",
-            "/phpmd.xml",
             "/phpunit.xml",
-            "/bitbucket-pipelines.yml",
-            "/.gitignore",
-            "/docker-compose.yml",
-            "/.env.dev",
-            "/grumphp.yml",
-            "/pdepend.xml",
-            "/phpstan.neon"
+            "/.gitignore"
         ]
     },
     "config": {
