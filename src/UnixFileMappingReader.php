@@ -84,7 +84,7 @@ class UnixFileMappingReader implements FileMappingReaderInterface
      *
      * @return void
      */
-    public function next()
+    public function next(): void
     {
         $this->getMappings()->next();
     }
@@ -114,7 +114,7 @@ class UnixFileMappingReader implements FileMappingReaderInterface
      *
      * @return void
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->getMappings()->rewind();
     }
