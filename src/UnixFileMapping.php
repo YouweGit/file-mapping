@@ -15,21 +15,30 @@ class UnixFileMapping implements FileMappingInterface
     private readonly string $destination;
 
     /**
+     * @var string[]
+     */
+    private readonly array $options;
+
+    /**
      * Constructor.
      *
      * @param string $sourceDirectory
      * @param string $destinationDirectory
      * @param string $mapping
+     * @param string ...$options
      */
     public function __construct(
         private readonly string $sourceDirectory,
         private readonly string $destinationDirectory,
         string $mapping,
+        string ...$options,
     ) {
         // Expand the source and destination.
         static $pattern    = '/({(.*?),(.*?)})/';
         $this->source      = preg_replace($pattern, '$2', $mapping);
         $this->destination = preg_replace($pattern, '$3', $mapping);
+
+        $this->options = $options;
     }
 
     /**
@@ -74,5 +83,13 @@ class UnixFileMapping implements FileMappingInterface
         return $this->destinationDirectory
             . DIRECTORY_SEPARATOR
             . $this->destination;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getOptions(): array
+    {
+        return $this->options;
     }
 }

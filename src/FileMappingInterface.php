@@ -38,4 +38,9 @@ interface FileMappingInterface
      * @return string
      */
     public function getDestination(): string;
+
+    /**
+     * @return string[]
+     */
+    public function getOptions(): array;
 }

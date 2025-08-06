@@ -57,16 +57,24 @@ class UnixFileMappingReader implements FileMappingReaderInterface
             $this->mappings = new ArrayIterator(
                 array_map(
                     function (string $mapping): FileMappingInterface {
+                        // Trim line as filenames normally don't contain spaces but the mapping file can (accidentally) contain trailing whitespace
+                        $mapping = trim($mapping);
+                        if (!str_contains($mapping, ':')) {
+                            $options = [];
+                        } else {
+                            [$mapping, $options] = explode(':', $mapping, 2);
+                            $options = explode(':', $options);
+                        }
+
                         return new UnixFileMapping(
                             $this->sourceDirectory,
                             $this->targetDirectory,
-                            trim($mapping)
+                            $mapping,
+                            ...$options,
                         );
                     },
                     // Filter out empty lines.
-                    array_filter(
-                        $filePaths
-                    )
+                    array_values(array_filter($filePaths))
                 )
             );
         }

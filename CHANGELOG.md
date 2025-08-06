@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## 2.0.0
+### Added
+- Way to provide options to the mapping. These options can then be used within your library.
+
+### Changed
+- Interface `\Youwe\FileMapping\FileMappingInterface` has a new method `getOptions(): array`.
+
 ### Removed
 - Support for PHP < 8.1
 
