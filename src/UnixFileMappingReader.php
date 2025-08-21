@@ -10,48 +10,43 @@ declare(strict_types=1);
 namespace Youwe\FileMapping;
 
 use ArrayIterator;
-use Iterator;
 use SplFileObject;
 
 class UnixFileMappingReader implements FileMappingReaderInterface
 {
-    /** @var array */
-    private $mappingFilePaths;
+    /**
+     * @var string[]
+     */
+    private readonly array $mappingFilePaths;
 
-    /** @var string */
-    private $sourceDirectory;
-
-    /** @var string */
-    private $targetDirectory;
-
-    /** @var Iterator|FileMappingInterface[] */
-    private $mappings;
+    /**
+     * @var ArrayIterator<FileMappingInterface>
+     */
+    private ArrayIterator $mappings;
 
     /**
      * Constructor.
      *
      * @param string   $sourceDirectory
      * @param string   $targetDirectory
-     * @param string[] ...$mappingFilePaths
+     * @param string ...$mappingFilePaths
      */
     public function __construct(
-        string $sourceDirectory,
-        string $targetDirectory,
+        private readonly string $sourceDirectory,
+        private readonly string $targetDirectory,
         string ...$mappingFilePaths
     ) {
-        $this->sourceDirectory  = $sourceDirectory;
-        $this->targetDirectory  = $targetDirectory;
         $this->mappingFilePaths = $mappingFilePaths;
     }
 
     /**
      * Get the mappings.
      *
-     * @return Iterator
+     * @return ArrayIterator<FileMappingInterface>
      */
-    private function getMappings(): Iterator
+    private function getMappings(): ArrayIterator
     {
-        if ($this->mappings === null) {
+        if (!isset($this->mappings)) {
             $filePaths = [];
 
             foreach ($this->mappingFilePaths as $mappingFilePath) {
@@ -62,16 +57,24 @@ class UnixFileMappingReader implements FileMappingReaderInterface
             $this->mappings = new ArrayIterator(
                 array_map(
                     function (string $mapping): FileMappingInterface {
+                        // Trim line as filenames normally don't contain spaces but the mapping file can (accidentally) contain trailing whitespace
+                        $mapping = trim($mapping);
+                        if (!str_contains($mapping, ':')) {
+                            $options = [];
+                        } else {
+                            [$mapping, $options] = explode(':', $mapping, 2);
+                            $options = explode(':', $options);
+                        }
+
                         return new UnixFileMapping(
                             $this->sourceDirectory,
                             $this->targetDirectory,
-                            trim($mapping)
+                            $mapping,
+                            ...$options,
                         );
                     },
                     // Filter out empty lines.
-                    array_filter(
-                        $filePaths
-                    )
+                    array_values(array_filter($filePaths))
                 )
             );
         }

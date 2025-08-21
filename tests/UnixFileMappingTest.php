@@ -10,18 +10,18 @@ declare(strict_types=1);
 namespace Youwe\FileMapping\Tests;
 
 use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Youwe\FileMapping\UnixFileMapping;
 
-/**
- * @coversDefaultClass \Youwe\FileMapping\UnixFileMapping
- */
+#[CoversClass(UnixFileMapping::class)]
 class UnixFileMappingTest extends TestCase
 {
     /**
      * @return string[][]
      */
-    public function mappingProvider(): array
+    public static function mappingProvider(): array
     {
         return [
             [
@@ -42,38 +42,19 @@ class UnixFileMappingTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider mappingProvider
-     *
-     * @param string $mapping
-     * @param string $expectedSource
-     * @param string $expectedDestination
-     *
-     * @return UnixFileMapping
-     *
-     * @covers ::__construct
-     * @covers ::getRelativeSource
-     * @covers ::getRelativeDestination
-     */
+    #[DataProvider('mappingProvider')]
     public function testMapping(
         string $mapping,
         string $expectedSource,
         string $expectedDestination
-    ): UnixFileMapping {
+    ): void {
         $mapping = new UnixFileMapping('.', '.', $mapping);
 
         $this->assertEquals($expectedSource, $mapping->getRelativeSource());
         $this->assertEquals($expectedDestination, $mapping->getRelativeDestination());
-
-        return $mapping;
     }
 
-    /**
-     * @return void
-     * @covers ::getSource
-     * @covers ::getDestination
-     */
-    public function testDirectoryResolving()
+    public function testDirectoryResolving(): void
     {
         $fs = vfsStream::setup(
             sha1(__METHOD__),
@@ -93,6 +74,6 @@ class UnixFileMappingTest extends TestCase
         );
 
         $this->assertFileExists($mapping->getSource());
-        $this->assertFileNotExists($mapping->getDestination());
+        $this->assertFileDoesNotExist($mapping->getDestination());
     }
 }

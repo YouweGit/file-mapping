@@ -11,17 +11,13 @@ namespace Youwe\FileMapping;
 
 class UnixFileMapping implements FileMappingInterface
 {
-    /** @var string */
-    private $sourceDirectory;
+    private readonly string $source;
+    private readonly string $destination;
 
-    /** @var string */
-    private $destinationDirectory;
-
-    /** @var string */
-    private $source;
-
-    /** @var string */
-    private $destination;
+    /**
+     * @var string[]
+     */
+    private readonly array $options;
 
     /**
      * Constructor.
@@ -29,19 +25,20 @@ class UnixFileMapping implements FileMappingInterface
      * @param string $sourceDirectory
      * @param string $destinationDirectory
      * @param string $mapping
+     * @param string ...$options
      */
     public function __construct(
-        string $sourceDirectory,
-        string $destinationDirectory,
-        string $mapping
+        private readonly string $sourceDirectory,
+        private readonly string $destinationDirectory,
+        string $mapping,
+        string ...$options,
     ) {
-        $this->sourceDirectory      = $sourceDirectory;
-        $this->destinationDirectory = $destinationDirectory;
-
         // Expand the source and destination.
         static $pattern    = '/({(.*?),(.*?)})/';
         $this->source      = preg_replace($pattern, '$2', $mapping);
         $this->destination = preg_replace($pattern, '$3', $mapping);
+
+        $this->options = $options;
     }
 
     /**
@@ -86,5 +83,13 @@ class UnixFileMapping implements FileMappingInterface
         return $this->destinationDirectory
             . DIRECTORY_SEPARATOR
             . $this->destination;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getOptions(): array
+    {
+        return $this->options;
     }
 }
