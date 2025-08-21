@@ -10,48 +10,43 @@ declare(strict_types=1);
 namespace Youwe\FileMapping;
 
 use ArrayIterator;
-use Iterator;
 use SplFileObject;
 
 class UnixFileMappingReader implements FileMappingReaderInterface
 {
-    /** @var array */
-    private $mappingFilePaths;
+    /**
+     * @var string[]
+     */
+    private readonly array $mappingFilePaths;
 
-    /** @var string */
-    private $sourceDirectory;
-
-    /** @var string */
-    private $targetDirectory;
-
-    /** @var Iterator|FileMappingInterface[] */
-    private $mappings;
+    /**
+     * @var ArrayIterator<FileMappingInterface>
+     */
+    private ArrayIterator $mappings;
 
     /**
      * Constructor.
      *
      * @param string   $sourceDirectory
      * @param string   $targetDirectory
-     * @param string[] ...$mappingFilePaths
+     * @param string ...$mappingFilePaths
      */
     public function __construct(
-        string $sourceDirectory,
-        string $targetDirectory,
+        private readonly string $sourceDirectory,
+        private readonly string $targetDirectory,
         string ...$mappingFilePaths
     ) {
-        $this->sourceDirectory  = $sourceDirectory;
-        $this->targetDirectory  = $targetDirectory;
         $this->mappingFilePaths = $mappingFilePaths;
     }
 
     /**
      * Get the mappings.
      *
-     * @return Iterator
+     * @return ArrayIterator<FileMappingInterface>
      */
-    private function getMappings(): Iterator
+    private function getMappings(): ArrayIterator
     {
-        if ($this->mappings === null) {
+        if (!isset($this->mappings)) {
             $filePaths = [];
 
             foreach ($this->mappingFilePaths as $mappingFilePath) {

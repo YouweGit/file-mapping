@@ -9,28 +9,16 @@ declare(strict_types=1);
 
 namespace Youwe\FileMapping\Tests;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Youwe\FileMapping\FileMappingInterface;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 use Youwe\FileMapping\UnixFileMappingReader;
 
-/**
- * @coversDefaultClass \Youwe\FileMapping\UnixFileMappingReader
- */
+#[CoversClass(UnixFileMappingReader::class)]
 class UnixFileMappingReaderTest extends TestCase
 {
-    /**
-     * @return void
-     *
-     * @covers ::__construct
-     * @covers ::getMappings
-     * @covers ::next
-     * @covers ::key
-     * @covers ::valid
-     * @covers ::rewind
-     * @covers ::current
-     */
-    public function testIteration()
+    public function testIteration(): void
     {
         $fileSystem = vfsStream::setup(
             sha1(__METHOD__),
